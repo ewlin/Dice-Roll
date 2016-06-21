@@ -3,7 +3,8 @@ var DIE_FACES = ['Dice1.svg','Dice2.svg','Dice3.svg','Dice4.svg','Dice5.svg','Di
     FRAME_MAX = 10;
 
 var currentFace,
-    currentFrame = 0;
+    currentFrame = 0,
+    numOfRolls = 0; 
 
     
     
@@ -27,14 +28,20 @@ function renderGame() {
     }
     
     //Roll Die
-    $('.roll-die').click(function(e){
+    $('.roll-die').click(function(){
+        
+        var button = this; 
+        if ($(button).hasClass('clickable')) {
+            
+            $(button).toggleClass('clickable'); 
             
             var randomNumber = genRandomInteger(NUM_OF_FACES),
                 dieImage = imageFilePath(randomNumber); 
-        
+    
             currentFace = randomNumber + 1;
-            
+        
             var animate = setInterval(function() {
+                
                 $('.die').html(imageFilePath(genRandomInteger(NUM_OF_FACES)));
                 currentFrame++; 
                 
@@ -46,10 +53,15 @@ function renderGame() {
                     $('.die').html(dieImage); 
                     //Display rolled value
                     $('.value span').html(currentFace); 
+                    
+                    $(button).toggleClass('clickable'); 
+
                 }
                 
             }, 100); 
-    
+        }
+        
+        
     
     });
     

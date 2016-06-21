@@ -17,6 +17,8 @@ function imageFilePath(index) {
 
 //GAME SETUP
 function renderGame() {
+    
+    //If player has not rolled the die yet, placeholder image
     if (!currentFace) {
         $('.die').append(imageFilePath(0)); 
     }
