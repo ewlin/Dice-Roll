@@ -18,7 +18,7 @@ function imageFilePath(index) {
 //GAME SETUP
 function renderGame() {
     
-    //If player has not rolled the die yet, placeholder image
+    //If player has not rolled the die yet, render placeholder image
     if (!currentFace) {
         $('.die').append(imageFilePath(0)); 
     }
@@ -26,16 +26,16 @@ function renderGame() {
     //Roll Die
     $('.roll-die').click(function(){
             
-            var randomNumber = genRandomInteger(NUM_OF_FACES),
-                dieImage = imageFilePath(randomNumber); 
+        var randomNumber = genRandomInteger(NUM_OF_FACES),
+            dieImage = imageFilePath(randomNumber); 
+    
+        //genRandomInteger gives range from 0-5; need to add 1 to the number. 
+        currentFace = randomNumber + 1;
         
-            currentFace = randomNumber + 1;
-            
-            
-            //Render die face
-            $('.die').html(dieImage); 
-            //Display rolled value
-            $('.value span').html(currentFace); 
+        //Render die face
+        $('.die').html(dieImage); 
+        //Display rolled value
+        $('.value span').html(currentFace); 
                 
     });
     
